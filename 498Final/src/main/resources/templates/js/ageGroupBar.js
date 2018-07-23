@@ -3,7 +3,7 @@ var svg = d3.select("svg"),
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom;
 
-var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+var x = d3.scaleBand().rangeRound([0, width]).padding(0.2),
     y = d3.scaleLinear().rangeRound([height, 0]);
 
 var g = svg.append("g")
@@ -35,10 +35,11 @@ d3.csv("CSV/sexageGroup_part.csv", function(d) {
 
   g.append("g")
       .attr("class", "axis axis--y")
-      .call(d3.axisLeft(y).tickFormat(d3.format(".0s")));
+      .attr("transform", "translate(" + x(0) + ",0)")
+      .call(d3.axisLeft(y).ticks(13).tickFormat(d3.format(".0f")));
     g.append("text")
       .attr("transform", "rotate(-90)")
-      .attr("y", 30 - margin.left)
+      .attr("y", 10 - margin.left)
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle").text("Population");
