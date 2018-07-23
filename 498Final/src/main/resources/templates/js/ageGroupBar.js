@@ -9,18 +9,24 @@ var x = d3.scaleBand().rangeRound([0, width]).padding(0.2),
 var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-function filterCriteria(d) {
-    return d.year === "1971";
-}
-d3.csv("CSV/sexageGroup_part.csv", function(d) {
+
+d3.csv("CSV/sexageGroup_bothsexes.csv", function(d) {
+
   d.value = +d.value;
   d.AgeGroup = d.AgeGroup.substring(0, d.AgeGroup.length - 6);
   return d;
 }, function(error, data) {
   if (error) throw error;
 
+var populationByYear = d3.nest()
+    .key(function(d) { return d.year; })
+    .entries(data);
+
+console.log("json: " + JSON.stringify(populationByYear));
   x.domain(data.map(function(d) { return d.AgeGroup; }));
   y.domain([0, d3.max(data, function(d) { return d.value; }) + 5000]);
+
+
 
   g.append("g")
       .attr("class", "axis axis--x")
@@ -35,7 +41,7 @@ d3.csv("CSV/sexageGroup_part.csv", function(d) {
 
   g.append("g")
       .attr("class", "axis axis--y")
-      .attr("transform", "translate(" + x(0) + ",0)")
+      //.attr("transform", "translate(" + x(0) + ",0)")
       .call(d3.axisLeft(y).ticks(13).tickFormat(d3.format(".0f")));
     g.append("text")
       .attr("transform", "rotate(-90)")
@@ -43,13 +49,49 @@ d3.csv("CSV/sexageGroup_part.csv", function(d) {
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle").text("Population");
+//----slide
+var barnumber = 20;
+var page = 1;
+ var viewdata = data.slice((page-1)*barnumber,page*barnumber);
+ $('#next').click(function() {
+          page++;
+          viewdata = data.slice((page-1)*barnumber,page*barnumber);
+          redraw();
+      });
+
+      $('#last').click(function() {
+          page--;
+          viewdata = data.slice((page-1)*barnumber,page*barnumber);
+          redraw();
+      });
+
+      function redraw() {
+      g.selectAll("rect")
+      .data(viewdata)
+          .transition()
+          .duration(500)
+          .attr("x",function(d,i){ return i*20})
+          .attr("y",function(d) {return 300 - y(d);})
+          .attr("width", 20)
+          .attr("height", y);
+
+          svg.selectAll("text")
+      .data(viewdata)
+           .transition()
+          .duration(500)
+          .text(String);
+}
+//----slide
 
   g.selectAll(".bar")
-    .data(data)
+    .data(viewdata)
     .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.AgeGroup); })
       .attr("y", function(d) { return y(d.value); })
       .attr("width", x.bandwidth())
       .attr("height", function(d) { return height - y(d.value); });
+
+
 });
+
