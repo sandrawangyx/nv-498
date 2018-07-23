@@ -9,6 +9,9 @@ var x = d3.scaleBand().rangeRound([0, width]).padding(0.2),
 var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+var title = g.append("text")
+     .attr("class", "title")
+     .attr("dy", ".71em");
 
 d3.csv("CSV/sexageGroup_bothsexes.csv", function(d) {
 
@@ -22,7 +25,7 @@ var populationByYear = d3.nest()
     .key(function(d) { return d.year; })
     .entries(data);
 
-console.log("json: " + JSON.stringify(populationByYear));
+//console.log("json: " + JSON.stringify(populationByYear));
   x.domain(data.map(function(d) { return d.AgeGroup; }));
   y.domain([0, d3.max(data, function(d) { return d.value; }) + 5000]);
 
@@ -52,21 +55,47 @@ console.log("json: " + JSON.stringify(populationByYear));
 //----slide
 var barnumber = 20;
 var page = 1;
- var viewdata = data.slice((page-1)*barnumber,page*barnumber);
+
+
+var viewYearData = populationByYear[page-1].key;
+var viewdata = populationByYear[page-1].values;
+
+
+//console.log("view data...." +JSON.stringify(viewdata));
+
+
+
  $('#next').click(function() {
           page++;
-          viewdata = data.slice((page-1)*barnumber,page*barnumber);
+          viewYearData = populationByYear[page-1].key;
+          viewdata = populationByYear[page-1].values;
           redraw();
+           title.text(viewYearData);
+          console.log("view data....." + JSON.stringify(viewdata));
       });
 
       $('#last').click(function() {
           page--;
-          viewdata = data.slice((page-1)*barnumber,page*barnumber);
+          viewYearData = populationByYear[page-1].key;
+         viewdata = populationByYear[page-1].values;
           redraw();
+          title.text(viewYearData);
+          console.log("view data....." + JSON.stringify(viewdata));
+
       });
 
       function redraw() {
-      g.selectAll("rect")
+      g.selectAll(".bar")
+          .data(viewdata)
+          .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x(d.AgeGroup); })
+            .attr("y", function(d) { return y(d.value); })
+            .attr("width", x.bandwidth())
+            .attr("height", function(d) { return height - y(d.value); });
+
+
+     /* g.selectAll("rect")
       .data(viewdata)
           .transition()
           .duration(500)
@@ -75,14 +104,15 @@ var page = 1;
           .attr("width", 20)
           .attr("height", y);
 
-          svg.selectAll("text")
+          g.selectAll("text")
       .data(viewdata)
            .transition()
           .duration(500)
-          .text(String);
+          .text(String);*/
 }
-//----slide
 
+//----slide
+console.log("view data....." + JSON.stringify(viewdata));
   g.selectAll(".bar")
     .data(viewdata)
     .enter().append("rect")
@@ -92,6 +122,6 @@ var page = 1;
       .attr("width", x.bandwidth())
       .attr("height", function(d) { return height - y(d.value); });
 
-
+title.text(viewYearData);
 });
 
