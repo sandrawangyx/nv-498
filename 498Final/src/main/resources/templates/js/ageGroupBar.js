@@ -60,8 +60,17 @@ var page = 1;
 var viewYearData = populationByYear[page-1].key;
 var viewdata = populationByYear[page-1].values;
 
+//console.log("view data....." + JSON.stringify(viewdata));
+  g.selectAll(".bar")
+      .data(viewdata)
+      .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return x(d.AgeGroup); })
+        .attr("y", function(d) { return y(d.value); })
+        .attr("width", x.bandwidth())
+        .attr("height", function(d) { return height - y(d.value); });
 
-//console.log("view data...." +JSON.stringify(viewdata));
+title.text(viewYearData);
 
 
 
@@ -69,59 +78,38 @@ var viewdata = populationByYear[page-1].values;
           page++;
           viewYearData = populationByYear[page-1].key;
           viewdata = populationByYear[page-1].values;
-          redraw();
+          updateView(viewdata);
            title.text(viewYearData);
-          console.log("view data....." + JSON.stringify(viewdata));
+          //console.log("view data....." + JSON.stringify(viewdata));
       });
 
       $('#last').click(function() {
           page--;
           viewYearData = populationByYear[page-1].key;
          viewdata = populationByYear[page-1].values;
-          redraw();
+          redraw(viewdata);
           title.text(viewYearData);
-          console.log("view data....." + JSON.stringify(viewdata));
+          //console.log("view data....." + JSON.stringify(viewdata));
 
       });
 
-      function redraw() {
+      function updateView(viewdata) {
+      console.log("in upateView"  + JSON.stringify(viewdata));
       g.selectAll(".bar")
-          .data(viewdata)
-          .enter().append("rect")
-            .attr("class", "bar")
-            .attr("x", function(d) { return x(d.AgeGroup); })
-            .attr("y", function(d) { return y(d.value); })
-            .attr("width", x.bandwidth())
-            .attr("height", function(d) { return height - y(d.value); });
-
-
-     /* g.selectAll("rect")
       .data(viewdata)
           .transition()
           .duration(500)
-          .attr("x",function(d,i){ return i*20})
-          .attr("y",function(d) {return 300 - y(d);})
-          .attr("width", 20)
-          .attr("height", y);
+          .attr("x", function(d) { return x(d.AgeGroup); })
+                  .attr("y", function(d) { return y(d.value); })
+         .attr("width", x.bandwidth())
+                 .attr("height", function(d) { return height - y(d.value); });
 
-          g.selectAll("text")
-      .data(viewdata)
-           .transition()
-          .duration(500)
-          .text(String);*/
-}
+       }
+
+
+
 
 //----slide
-console.log("view data....." + JSON.stringify(viewdata));
-  g.selectAll(".bar")
-    .data(viewdata)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.AgeGroup); })
-      .attr("y", function(d) { return y(d.value); })
-      .attr("width", x.bandwidth())
-      .attr("height", function(d) { return height - y(d.value); });
 
-title.text(viewYearData);
 });
 
