@@ -16,9 +16,10 @@ public class CsvModifier {
         try(Stream<String> stream = Files.lines(Paths.get(oldFilePath))){
 
             stream.forEach(line -> {
-                if (line.contains(bothSex) &&line.contains("to")
+                if (line.contains(bothSex) &&!line.contains("to")
                         && line.contains("Immigrants")
-                        && !line.contains("Canada") ) {
+                        && !line.contains("Canada")
+                        && line.contains("All ages")) {
                     try {
                         writer.append(line + "\n");
                     } catch (IOException e) {
