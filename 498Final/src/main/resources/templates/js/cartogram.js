@@ -47,8 +47,8 @@
           });
 
       // path with identity projection
-      var path = d3.geo.path()
-        .projection(ident);
+      var path = d3.geoPath()
+        .projection(d3.geoAlbers());//ident);
 
       var objects = object(projectedArcs, {type: "GeometryCollection", geometries: geometries})
           .geometries.map(function(geom) {
@@ -159,7 +159,7 @@
 
     // for convenience
     carto.path = d3.geoPath()
-      .projection(ident);
+      .projection(d3.geoAlbers());//ident);
 
     carto.iterations = function(i) {
       if (arguments.length) {
