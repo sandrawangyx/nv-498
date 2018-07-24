@@ -1,4 +1,4 @@
-var svg = d3.select("svg"),
+var svg = d3.select("#svg2"),
     margin = {top: 20, right: 20, bottom: 50, left: 70},
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom;
@@ -94,7 +94,7 @@ title.text(viewYearData);
       });
 
       function updateView(viewdata) {
-      console.log("in upateView"  + JSON.stringify(viewdata));
+      //console.log("in upateView"  + JSON.stringify(viewdata));
       g.selectAll(".bar")
       .data(viewdata)
           .transition()

@@ -61,12 +61,12 @@ public class Main {
     return "ageGroup";
   }
 
-  /*@Bean
-    public File modifyCSV() throws IOException {
-      CsvModifier csvModifier = new CsvModifier();
-      return csvModifier.createNewCsv("src/main/resources/CSV/sex_ageGroup.csv", "src/main/resources/CSV/sexageGroup_part.csv");
-
-  }*/
+//  @Bean
+//    public File modifyCSV() throws IOException {
+//      CsvModifier csvModifier = new CsvModifier();
+//      return csvModifier.createNewCsv("src/main/resources/templates/CSV/sex_ageGroup.csv", "src/main/resources/templates/CSV/sexageGroup_province.csv");
+//
+//  }
 
   /*@RequestMapping("/db")
   String db(Map<String, Object> model) {

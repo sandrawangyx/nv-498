@@ -18,7 +18,7 @@ public class CsvModifier {
             stream.forEach(line -> {
                 if (line.contains(bothSex) &&line.contains("to")
                         && line.contains("Immigrants")
-                        && line.contains("Canada") && !line.contains("-1")) {
+                        && !line.contains("Canada") ) {
                     try {
                         writer.append(line + "\n");
                     } catch (IOException e) {

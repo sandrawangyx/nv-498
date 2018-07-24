@@ -66,3 +66,18 @@ rect {
 rect:first-child {
   fill: #1f77b4;
 }
+#map {
+        display: block;
+        position: absolute;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+      path.province {
+        fill: steelblue;
+        stroke: white;
+      }
+      path.province:hover {
+        fill: orange;
+      }
