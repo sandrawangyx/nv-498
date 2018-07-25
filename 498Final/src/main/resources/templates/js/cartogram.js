@@ -1,4 +1,5 @@
-(function(exports) {
+
+//((function(exports) {
 
   /*
    * d3.cartogram is a d3-friendly implementation of An Algorithm to Construct
@@ -47,8 +48,8 @@
           });
 
       // path with identity projection
-      var path = d3.geoPath()
-        .projection(d3.geoAlbers());//ident);
+      var path = d3.geo.path()
+        .projection(ident);
 
       var objects = object(projectedArcs, {type: "GeometryCollection", geometries: geometries})
           .geometries.map(function(geom) {
@@ -149,7 +150,7 @@
     }
 
     var iterations = 8,
-        projection = d3.geoAlbers(),
+        projection = d3.geo.albers(),
         properties = function(id) {
           return {};
         },
@@ -158,8 +159,8 @@
         };
 
     // for convenience
-    carto.path = d3.geoPath()
-      .projection(d3.geoAlbers());//ident);
+    carto.path = d3.geo.path()
+      .projection(ident);
 
     carto.iterations = function(i) {
       if (arguments.length) {
@@ -208,12 +209,6 @@
 
     carto.properties = function(props) {
       if (arguments.length) {
-      d3.functor = function functor(v) {
-        return typeof v === "function" ? v : function() {
-          return v;
-        };
-      };
-
         properties = d3.functor(props);
         return carto;
       } else {
@@ -344,4 +339,4 @@
     var t, j = array.length, i = j - n; while (i < --j) t = array[i], array[i++] = array[j], array[j] = t;
   }
 
-})(this);
+//})(this);

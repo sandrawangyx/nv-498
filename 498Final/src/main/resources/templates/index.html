@@ -1,60 +1,140 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'index')}">
+<html>
+<head>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+    <script type="text/javascript" src="http://d3js.org/topojson.v1.min.js"></script>
+    <script type="text/javascript" src="js/cartogram.js"></script>
 
+    <style type="text/css">
+      html, body { margin: 0; padding: 0; height: 100%; }
+      #map {
+        display: block;
+        position: absolute;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+      path.province {
+        fill: steelblue;
+        stroke: white;
+      }
+      path.province:hover {
+        fill: orange;
+      }
+
+    </style>
+</head>
 <body>
+<div id="map-container" data-provinces="js/canada.json" data-profile="CSV/sexageGroup_province.csv"></div>
+<script type="text/javascript">
+      (function () {
+        var container = d3.select('#map-container').node(),
+            data = container.dataset,
+            census = d3.map(),
+            scale,
+            populationByProvince;
 
-<div class="jumbotron text-center">
-  <div class="container">
-    <a href="/" class="lang-logo">
-      <img src="/lang-logo.png">
-    </a>
-    <h1>Getting Started with Java on Heroku</h1>
-    <p>This is a sample Java application deployed to Heroku. It's a reasonably simple app - but a good foundation for understanding how to get the most out of the Heroku platform.</p>
-    <a type="button" class="btn btn-lg btn-default" href="https://devcenter.heroku.com/articles/getting-started-with-java"><span class="glyphicon glyphicon-flash"></span> Getting Started with Java</a>
-    <a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/java-getting-started"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
-  </div>
-</div>
-<div class="container">
-  <div class="alert alert-info text-center" role="alert">
-    To deploy your own copy, and learn the fundamentals of the Heroku platform, head over to the <a href="https://devcenter.heroku.com/articles/getting-started-with-java" class="alert-link">Getting Started with Java on Heroku</a> tutorial.
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-info-sign"></span> How this sample app works</h3>
-      <ul>
-        <li>This app was deployed to Heroku, either using Git or by using <a href="https://github.com/heroku/java-getting-started">Heroku Button</a> on the repository.</li>
+        var width = 960,
+            height = 500;
 
-        <li>When Heroku received the source code, it fetched all the dependencies in the <a href="https://github.com/heroku/java-getting-started/blob/master/pom.xml">pom.xml</a>, creating a slug.</li>
-        <li>The platform then spins up a dyno, a lightweight container that provides an isolated environment in which the slug can be mounted and executed.</li>
-        <li>You can scale your app, manage it, and deploy over <a href="https://addons.heroku.com/">150 add-on services</a>, from the Dashboard or CLI.</li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-link"></span> Next Steps</h3>
-      <ul>
-        <li>If you are following the <a href="https://devcenter.heroku.com/articles/getting-started-with-java">Getting Started</a> guide, then please head back to the tutorial and follow the next steps!</li>
-        <li>If you deployed this app by deploying the Heroku Button, then in a command line shell, run:</li>
-        <ul>
-          <li><code>git clone https://github.com/heroku/java-getting-started.git</code> - this will create a local copy of the source code for the app</li>
-          <li><code>cd java-getting-started</code> - change directory into the local source code repository</li>
-          <li><code>heroku git:remote -a &lt;your-app-name></code> - associate the Heroku app with the repository</li>
-          <li>You'll now be set up to run the app locally, or <a href="https://devcenter.heroku.com/articles/getting-started-with-java#push-local-changes">deploy changes</a> to Heroku</li>
-        </ul>
-      </ul>
-      <h3><span class="glyphicon glyphicon-link"></span> Helpful Links</h3>
-      <ul>
-        <li><a href="https://www.heroku.com/home">Heroku</a></li>
-        <li><a href="https://devcenter.heroku.com/">Heroku Dev Center</a></li>
-        <li><a href="https://devcenter.heroku.com/articles/getting-started-with-java">Getting Started with Java on Heroku</a></li>
-        <li><a href="https://devcenter.heroku.com/articles/deploying-java">Deploying Java Apps on Heroku</a></li>
-      </ul>
-    </div>
-  </div> <!-- row -->
-   <div class="alert alert-info text-center" role="alert">
-    Please do work through the Getting Started guide, even if you do know how to build such an application.  The guide covers the basics of working with Heroku, and will familiarize you with all the concepts you need in order to build and deploy your own apps.
-  </div>
-</div>
+            var proj = d3.geo.albers(),
+                path = d3.geo.path().projection(proj);
 
+        var svg = d3.select(container).append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+        d3.json(data.provinces, function (canada) {
+            d3.csv(data.profile, function (profile) {
+            populationByProvince = d3.nest().key(function(d) { return d.provinces; }).entries(profile);
+            //console.log("cpopulation by province...." + JSON.stringify(populationByProvince));
+                //profile.forEach(function (d) {
+                    //census.set(populationByProvince.key, populationByProvince);
+                    //console.log("census after mapping...." + JSON.stringify(census));
+                //});
+
+                var extent = d3.extent(profile, function (d) { return +d.value; });
+                scale = d3.scale.linear()
+                    .domain(extent)
+                    .range([1, 100]);
+                ready(canada, profile);
+            });
+        });
+
+        function ready(canada, profile) {
+
+            var carto = d3.cartogram()
+                .projection(proj)
+                .properties(function (geom, topo) {
+                    return geom.properties;
+                })
+                // Morph on the number of characters in province's name.
+                .value(function (d) {
+                console.log("d......" + d);
+                    var p = get_population(d,"1971");
+                        s = scale(p);
+                    return s;
+                });
+
+            var no_morph = create_canada(canada);
+            no_morph.attr("transform", "translate(0,250)" +
+                           "scale(0.5,0.5)");
+            var provinces = create_canada(canada);
+            provinces.attr("transform", "translate(450,250)" +
+                           "scale(0.5,0.5)");
+
+            var features = carto(canada, canada.objects.provinces.geometries).features;
+
+            provinces.data(features)
+                .transition()
+                .duration(2000)
+                .ease("sin-in-out")
+                .attr("d", carto.path);
+        }
+
+        function get_population(d, year) {
+        var population;
+        for(var i = 0; i < populationByProvince.length; i++)
+           {
+            var prov = populationByProvince[i].key;
+            console.log("prov...." + prov);
+            if(prov == d.properties.PRENAME)
+            {
+                var prov_values = populationByProvince[i].values;
+                for( var j=0; j<prov_values.length;j++)
+                {
+                    var y = prov_values[j].year;
+                    if(y == year)
+                    {
+                        population = +prov_values[j].value;
+                        console.log("population" + population);
+                    }
+                 }
+             }
+           }
+        console.log("get population..." + population);
+        return population;
+          //return +census.get(d.properties.PRENAME).value;
+          
+        }
+
+        function create_canada(canada) {
+            var provinces = svg.append("g")
+                .attr("class", "provinces")
+                .selectAll("path")
+                .data(topojson.feature(canada, canada.objects.provinces).features)//.geometries)
+                .enter().append("path")
+                .attr("class", "province")
+                .attr("d", path);
+
+            provinces.append("title")
+                .text(function(d) { return d.id + ": " + d3.format(',')(get_population(d)); });
+
+            return provinces;
+        }
+      }());
+
+</script>
 </body>
 </html>

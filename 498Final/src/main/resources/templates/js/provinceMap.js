@@ -68,7 +68,7 @@ console.log("carto..." + JSON.stringify(canada.objects.provinces.geometries));
                 .transition()
                 .duration(2000)
                 .ease("easeSin")
-                .attr("d", carto.path);
+                .attr("d", path);
         }
 
         function get_population(year, province) {
