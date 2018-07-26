@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail of Each Province</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+        }
+
+        .bar {
+            fill: Orange;
+        }
+
+        .axis {
+            font-size: 13px;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            display: none;
+        }
+
+        .label {
+            font-size: 13px;
+        }
+    </style>
+
+</head>
+<body>
+Total,NonImmigrants,Immigrants,Before2001,y2001to2005,y2006to2010,y2011to2016,NonPermanentResidents
+<div class="tab">
+    <button class="tablinks" onclick="openCat(event, 'Total')">Total</button>
+    <button class="tablinks" onclick="openCat(event, 'NonImmigrants')">Non-Immigrants</button>
+    <button class="tablinks" onclick="openCat(event, 'Immigrants')">Immigrants</button>
+    <button class="tablinks" onclick="openCat(event, 'Before2001')">Before 2001</button>
+    <button class="tablinks" onclick="openCat(event, 'y2001to2005')">year 2001 to 2005</button>
+    <button class="tablinks" onclick="openCat(event, 'y2006to2010')">year 2006 to 2010</button>
+    <button class="tablinks" onclick="openCat(event, 'y2011to2016')">year 2011 to 2016</button>
+    <button class="tablinks" onclick="openCat(event, 'NonPermanentResidents')">Non PermanentResidents</button>
+</div>
+
+
+
+<div id="bar-container" data-profile="CSV/canPopulationByProvince.csv"/>
+<svg width="960" height="500" id="svg2"></svg>
+<script type="text/javascript" src="http://d3js.org/d3.v4.min.js"></script>
+<script type="text/javascript" src="js/provinceBar.js"></script>
+
+</body>
+</html>

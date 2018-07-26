@@ -14,9 +14,9 @@
         .attr("width", width)
         .attr("height", height);
 
-//    var title = svg.append("text")
-//        .attr("class", "title")
-//        .attr("dy", ".71em");
+    var title = svg.append("text")
+       .attr("class", "title")
+        .attr("dy", ".71em");
 
     d3.json(data.provinces, function(canada) {
         d3.csv(data.profile, function(profile) {
@@ -61,6 +61,7 @@
                         .duration(2000)
                         .ease("sin-in-out")
                         .attr("d", carto.path);
+                        title.append("text").text(profile.Prov_Name);
     }
 
     function get_population(d) {
