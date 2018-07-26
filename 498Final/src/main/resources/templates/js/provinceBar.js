@@ -1,9 +1,8 @@
 function provB(columnName) {
-
 console.log("passing in  column name...." + columnName);;
-    var svg = d3.select("#svg2"),
+    var svg = //d3.select("#bar-container"),
         margin = {
-            top: 15,
+            top: 30,
             right: 25,
             bottom: 15,
             left: 200
@@ -43,6 +42,30 @@ console.log("passing in  column name...." + columnName);;
         }
         //console.log("return column name..... " + returnColumnName);
         return returnColumnName;
+    }
+
+    function mapDisplayName(d, columnName)
+    {
+    var returnColumnName;
+            if (columnName === "Total") {
+                returnColumnName = "Total population";
+            } else if (columnName === "NonImmigrants") {
+                returnColumnName = "Non Immigrants";
+            } else if (columnName === "Immigrants") {
+                returnColumnName = "Immigrants";
+            } else if (columnName === "Before2001") {
+                returnColumnName = "Before 2001";
+            } else if (columnName === "y2001to2005") {
+                returnColumnName = "From 2001 to 2005";
+            } else if (columnName === "y2006to2010") {
+                returnColumnName = "From 2006 to 2010";
+            } else if (columnName === "y2011to2016") {
+                returnColumnName = "From 2011 to 2016";
+            } else if (columnName === "NonPermanentResidents") {
+                returnColumnName = "Non Permanent Residents";
+            }
+            //console.log("return column name..... " + returnColumnName);
+            return returnColumnName;
     }
 
     d3.csv("CSV/canPopulationByProvince.csv", function(d) {
@@ -117,7 +140,7 @@ console.log("passing in  column name...." + columnName);;
                 return mapColumnName(d, columnName);
             });
 
-        title.text("dispalyName");
+        title.text(function(d){return mapDisplayName(d, columnName)});
 
     });
     document.getElementById("bar-container").style.display= "block";
