@@ -25,12 +25,49 @@
         .label {
             font-size: 13px;
         }
-    </style>
+        /* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
 
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+    </style>
+    <!--<script type="text/javascript" src="http://d3js.org/d3.v4.min.js"></script>-->
+    <script type="text/javascript" src="js/d3v4.js"></script>
+    <script type="text/javascript" src="js/provinceBar.js"></script>
 </head>
-<body>
-Total,NonImmigrants,Immigrants,Before2001,y2001to2005,y2006to2010,y2011to2016,NonPermanentResidents
-<div class="tab">
+
+<div class="tab" id="tabContainer">
     <button class="tablinks" onclick="openCat(event, 'Total')">Total</button>
     <button class="tablinks" onclick="openCat(event, 'NonImmigrants')">Non-Immigrants</button>
     <button class="tablinks" onclick="openCat(event, 'Immigrants')">Immigrants</button>
@@ -38,15 +75,73 @@ Total,NonImmigrants,Immigrants,Before2001,y2001to2005,y2006to2010,y2011to2016,No
     <button class="tablinks" onclick="openCat(event, 'y2001to2005')">year 2001 to 2005</button>
     <button class="tablinks" onclick="openCat(event, 'y2006to2010')">year 2006 to 2010</button>
     <button class="tablinks" onclick="openCat(event, 'y2011to2016')">year 2011 to 2016</button>
-    <button class="tablinks" onclick="openCat(event, 'NonPermanentResidents')">Non PermanentResidents</button>
+    <button class="tablinks" onclick="openCat(event, 'NonPermanentResidents')">Non Permanent Residents</button>
+</div>
+<div id="Total" class="tabcontent">
+    <h3>Total Population in each Province</h3>
 </div>
 
+<div id="NonImmigrants" class="tabcontent">
+    <h3>Non Immigrants in each Province</h3>
+</div>
+<div id="Immigrants" class="tabcontent">
+    <h3>Immigrants in each Province</h3>
 
 
-<div id="bar-container" data-profile="CSV/canPopulationByProvince.csv"/>
+</div>
+<div id="Before2001" class="tabcontent">
+    <h3>Total Population in each Province</h3>
+</div>
+<div id="y2001to2005" class="tabcontent">
+    <h3>Total Population from year 2001 to 2005 in each Province</h3>
+</div>
+<div id="y2006to2010" class="tabcontent">
+    <h3>Total Population from year 2006 to 2010 in each Province</h3>
+</div>
+<div id="y2011to2016" class="tabcontent">
+    <h3>Total Population from year 2011 to 2016 in each Province</h3>
+</div>
+<div id="NonPermanentResidents" class="tabcontent">
+    <h3>Non PR Population in each Province</h3>
+ </div>
+
+<div id="bar-container" class="tabcontent"  data-profile="CSV/canPopulationByProvince.csv">
 <svg width="960" height="500" id="svg2"></svg>
-<script type="text/javascript" src="http://d3js.org/d3.v4.min.js"></script>
-<script type="text/javascript" src="js/provinceBar.js"></script>
+</div>
+<script>
+    function openCat(evt, catName) {
+    var i, tabcontent, tablinks, displayName;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+document.getElementById("bar-container").style.display= "none";
+
+tablinks = document.getElementsByClassName("tablinks");
+
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(catName).style.display = "block";
+    evt.currentTarget.className += " active";
+    displayName = document.getElementsByClassName('tablinks').innerHTML;
+console.log("dislay name ..... " + displayName);
+    //dynamically add div
+    //var outterDiv= document.getElementById(catName);
+    //var innerDiv = document.createElement('div');
+//innerDiv.className = "inner-bar-container";
+//innerDiv.setAttribute('data-profile','CSV/canPopulationByProvince.csv');
+//outterDiv.appendChild(innerDiv);
+//document.body.appendChild(outterDiv);
+//var innerSvg = document.createElement('svg');
+//innerSvg.id="svg2";
+//innerDiv.appendChild(innerSvg);
+provB(catName, displayName);
+
+
+}
+
+</script>
 
 </body>
 </html>
