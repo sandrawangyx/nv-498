@@ -9,7 +9,7 @@ console.log("passing in  column name...." + columnName);;
     var svg = d3.select("#bar-container"),
         margin = {
             top: 30,
-            right: 25,
+            right: 80,
             bottom: 15,
             left: 200
         },
