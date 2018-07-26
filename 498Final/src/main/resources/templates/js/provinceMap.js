@@ -2,8 +2,7 @@
     var container = d3.select('#map-container').node(),
         data = container.dataset,
         census = d3.map(),
-        scale,
-        populationByProvince;
+        scale;
 
     var width = 960,
         height = 500;
@@ -15,16 +14,12 @@
         .attr("width", width)
         .attr("height", height);
 
-    var title = svg.append("text")
-        .attr("class", "title")
-        .attr("dy", ".71em");
+//    var title = svg.append("text")
+//        .attr("class", "title")
+//        .attr("dy", ".71em");
 
     d3.json(data.provinces, function(canada) {
         d3.csv(data.profile, function(profile) {
-            //            populationByProvince = d3.nest().key(function(d) {
-            //                return d.provinces;
-            //            }).entries(profile);
-            //            console.log("cpopulation by province...." + JSON.stringify(populationByProvince));
             profile.forEach(function(d) {
                 census.set(d.province, d);
                 console.log("census after mapping...." + JSON.stringify(census));
@@ -36,8 +31,7 @@
                 .domain(extent)
                 .range([1, 100]);
             ready(canada, profile);
-            //ready(canada, populationByProvince);
-            //title.text(populationByProvince[0].values[0].year);
+
         });
     });
 
@@ -52,7 +46,6 @@
             .value(function(d) {
                 var p = get_population(d);
                 s = scale(p);
-
                 return s;
             });
 
@@ -75,36 +68,6 @@
     function get_population(d) {
         return +census.get(d.properties.PRENAME).Total;
     }
-
-    //
-    //    function get_population(d) {
-    //        var population;
-    //        for (var i = 0; i < populationByProvince.length; i++) {
-    //            var prov = populationByProvince[i].key;
-    //            if (prov === d.properties.PRENAME) {
-    //                console.log("prov...." + prov);
-    //                var prov_values = populationByProvince[i].values;
-    //                var y;
-    //                for (var j = 0; j < prov_values.length; j++) {
-    //                    y = prov_values[j].year;
-    //                    if (y === year) {
-    //                        if (typeof prov_values[j].value !== 'undefined') {
-    //                            population = +prov_values[j].value;
-    //                            console.log("year..." + y);
-    //                            console.log("get population..." + population);
-    //                            break;
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //            if((i== populationByProvince.length -1 ) && (typeof population === 'undefined'))
-    //            {
-    //            console.log("finish loop undefined " + JSON.stringify(d));
-    //            }
-    //        }
-    //        console.log("out .... get population..." + population);
-    //        return population;
-    //    }
 
     function create_canada(canada) {
         var provinces = svg.append("g")
