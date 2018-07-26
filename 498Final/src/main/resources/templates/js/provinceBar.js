@@ -1,6 +1,12 @@
+function updateSVG()
+{
+d3.select("svg").remove();
+}
+
+
 function provB(columnName) {
 console.log("passing in  column name...." + columnName);;
-    var svg = //d3.select("#bar-container"),
+    var svg = d3.select("#bar-container"),
         margin = {
             top: 30,
             right: 25,
@@ -9,12 +15,12 @@ console.log("passing in  column name...." + columnName);;
         },
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
+        var g = svg.append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    var g = svg.append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     var title = g.append("text")
         .attr("class", "title")
@@ -140,7 +146,7 @@ console.log("passing in  column name...." + columnName);;
                 return mapColumnName(d, columnName);
             });
 
-        title.text(function(d){return mapDisplayName(d, columnName)});
+       // title.text(function(d){return mapDisplayName(d, columnName)});
 
     });
     document.getElementById("bar-container").style.display= "block";

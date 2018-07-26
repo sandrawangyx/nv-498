@@ -135,16 +135,8 @@ tablinks = document.getElementsByClassName("tablinks");
 
     displayName = document.getElementById(catName).innerText;
 console.log("dislay name ..... " + displayName);
-    //dynamically add div
-    //var outterDiv= document.getElementById(catName);
-    //var innerDiv = document.createElement('div');
-//innerDiv.className = "inner-bar-container";
-//innerDiv.setAttribute('data-profile','CSV/canPopulationByProvince.csv');
-//outterDiv.appendChild(innerDiv);
-//document.body.appendChild(outterDiv);
-//var innerSvg = document.createElement('svg');
-//innerSvg.id="svg2";
-//innerDiv.appendChild(innerSvg);
+
+updateSVG();
 provB(catName, displayName);
 
 
