@@ -1,4 +1,4 @@
-Geographic code,province,Total,Period of immigration - Non-immigrants,Period of immigration - Immigrants,Period of immigration - Before 2001,Period of immigration - 2001 to 2005,Period of immigration - 2006 to 2010,Period of immigration - 2011 to 2016,Period of immigration - Non-permanent residents
+Geographic code,Prov_Name,Total,NonImmigrants,Immigrants,Before2001,y2001to2005,y2006to2010,y2011to2016,NonPermanentResidents
 10,Newfoundland and Labrador,512250,496410,12080,5545,990,1870,3675,3770
 11,Prince Edward Island,139685,129405,8940,3695,555,1335,3360,1340
 12,Nova Scotia,908340,842760,55675,30700,5100,8080,11790,9900

@@ -21,19 +21,17 @@
     d3.json(data.provinces, function(canada) {
         d3.csv(data.profile, function(profile) {
             profile.forEach(function(d) {
-                census.set(d.province, d);
-                console.log("census after mapping...." + JSON.stringify(census));
+                census.set(d.Prov_Name, d);
+                //console.log("census after mapping...." + JSON.stringify(census));
             });
 
             var extent = d3.extent(profile, function (d) { return +d.Total; });
-            console.log("extend...." + extent);
-            scale = d3.scale.linear()
-                .domain(extent)
-                .range([1, 100]);
-            ready(canada, profile);
-
-        });
-    });
+                            scale = d3.scale.linear()
+                                .domain(extent)
+                                .range([1, 100]);
+                            ready(canada, profile);
+                        });
+                    });
 
     function ready(canada, profile) {
 
@@ -45,43 +43,43 @@
             // Morph on the number of characters in province's name.
             .value(function(d) {
                 var p = get_population(d);
+               // console.log("p......" + p);
                 s = scale(p);
                 return s;
             });
 
-        var no_morph = create_canada(canada);
-        no_morph.attr("transform", "translate(0,250)" +
-            "scale(0.5,0.5)");
-        var provinces = create_canada(canada);
-        provinces.attr("transform", "translate(450,250)" +
-            "scale(0.5,0.5)");
-
+       var no_morph = create_canada(canada);
+                   no_morph.attr("transform", "translate(0,250)" +
+                                  "scale(0.5,0.5)");
+                   var provinces = create_canada(canada);
+                   provinces.attr("transform", "translate(450,250)" +
+                                  "scale(0.5,0.5)");
         var features = carto(canada, canada.objects.provinces.geometries).features;
 
-        provinces.data(features)
-            .transition()
-            .duration(2000)
-            .ease("sin-in-out")
-            .attr("d", carto.path);
+                    provinces.data(features)
+                        .transition()
+                        .duration(2000)
+                        .ease("sin-in-out")
+                        .attr("d", carto.path);
     }
 
     function get_population(d) {
         return +census.get(d.properties.PRENAME).Total;
     }
 
-    function create_canada(canada) {
-        var provinces = svg.append("g")
-            .attr("class", "provinces")
-            .selectAll("path")
-            .data(topojson.object(canada, canada.objects.provinces).geometries)
-            .enter().append("path")
-            .attr("class", "province")
-            .attr("d", path);
+   function create_canada(canada) {
+               var provinces = svg.append("g")
+                   .attr("class", "provinces")
+                   .selectAll("path")
+                   .data(topojson.object(canada, canada.objects.provinces).geometries)
+                   .enter().append("path")
+                   .attr("class", "province")
+                   .attr("d", path);
 
-        provinces.append("title")
-            .text(function(d) {
-                return d.id + ": " + d3.format(',')(get_population(d));});
+               provinces.append("title")
+                   .text(function(d) { return d.id + ": " + d3.format(',')(get_population(d)); });
 
-        return provinces;
+               return provinces;
+
     }
 }());
