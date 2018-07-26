@@ -18,6 +18,7 @@
        .attr("class", "title")
         .attr("dy", ".71em");
 
+
     d3.json(data.provinces, function(canada) {
         d3.csv(data.profile, function(profile) {
             profile.forEach(function(d) {
@@ -61,7 +62,7 @@
                         .duration(2000)
                         .ease("sin-in-out")
                         .attr("d", carto.path);
-                        title.append("text").text(profile.Prov_Name);
+                        //title.append("text").text(profile.Prov_Name);
     }
 
     function get_population(d) {
@@ -77,9 +78,10 @@
                    .attr("class", "province")
                    .attr("d", path);
 
+
                provinces.append("title")
                    .text(function(d) { return d.id + ": " + d3.format(',')(get_population(d)); });
-
+provinces.append("svg:title").text(function(d) { return d.id });
                return provinces;
 
     }

@@ -1,0 +1,209 @@
+year,provinces,sex,immigrant_type,ageGroup,value
+1995,Newfoundland and Labrador,Both sexes,Immigrants,All ages,557
+1995,Prince Edward Island,Both sexes,Immigrants,All ages,127
+1995,Nova Scotia,Both sexes,Immigrants,All ages,3397
+1995,New Brunswick,Both sexes,Immigrants,All ages,646
+1995,Quebec,Both sexes,Immigrants,All ages,29490
+1995,Ontario,Both sexes,Immigrants,All ages,115961
+1995,Saskatchewan,Both sexes,Immigrants,All ages,1825
+1995,Alberta,Both sexes,Immigrants,All ages,13870
+1995,British Columbia,Both sexes,Immigrants,All ages,47728
+1995,Yukon,Both sexes,Immigrants,All ages,89
+1995,Nunavut,Both sexes,Immigrants,All ages,8
+1996,Newfoundland and Labrador,Both sexes,Immigrants,All ages,479
+1996,Prince Edward Island,Both sexes,Immigrants,All ages,185
+1996,Nova Scotia,Both sexes,Immigrants,All ages,3111
+1996,New Brunswick,Both sexes,Immigrants,All ages,673
+1996,Quebec,Both sexes,Immigrants,All ages,27991
+1996,Ontario,Both sexes,Immigrants,All ages,119401
+1996,Saskatchewan,Both sexes,Immigrants,All ages,1775
+1996,Alberta,Both sexes,Immigrants,All ages,13783
+1996,British Columbia,Both sexes,Immigrants,All ages,53235
+1996,Yukon,Both sexes,Immigrants,All ages,97
+1996,Nunavut,Both sexes,Immigrants,All ages,18
+1997,Newfoundland and Labrador,Both sexes,Immigrants,All ages,411
+1997,Prince Edward Island,Both sexes,Immigrants,All ages,123
+1997,Nova Scotia,Both sexes,Immigrants,All ages,2590
+1997,New Brunswick,Both sexes,Immigrants,All ages,717
+1997,Quebec,Both sexes,Immigrants,All ages,27242
+1997,Ontario,Both sexes,Immigrants,All ages,106419
+1997,Saskatchewan,Both sexes,Immigrants,All ages,1599
+1997,Alberta,Both sexes,Immigrants,All ages,11648
+1997,British Columbia,Both sexes,Immigrants,All ages,40456
+1997,Yukon,Both sexes,Immigrants,All ages,78
+1997,Nunavut,Both sexes,Immigrants,All ages,15
+1998,Newfoundland and Labrador,Both sexes,Immigrants,All ages,368
+1998,Prince Edward Island,Both sexes,Immigrants,All ages,125
+1998,Nova Scotia,Both sexes,Immigrants,All ages,1624
+1998,New Brunswick,Both sexes,Immigrants,All ages,752
+1998,Quebec,Both sexes,Immigrants,All ages,27739
+1998,Ontario,Both sexes,Immigrants,All ages,91899
+1998,Saskatchewan,Both sexes,Immigrants,All ages,1752
+1998,Alberta,Both sexes,Immigrants,All ages,11243
+1998,British Columbia,Both sexes,Immigrants,All ages,34274
+1998,Yukon,Both sexes,Immigrants,All ages,67
+1998,Nunavut,Both sexes,Immigrants,All ages,12
+1999,Newfoundland and Labrador,Both sexes,Immigrants,All ages,425
+1999,Prince Edward Island,Both sexes,Immigrants,All ages,142
+1999,Nova Scotia,Both sexes,Immigrants,All ages,1674
+1999,New Brunswick,Both sexes,Immigrants,All ages,609
+1999,Quebec,Both sexes,Immigrants,All ages,30250
+1999,Ontario,Both sexes,Immigrants,All ages,116744
+1999,Saskatchewan,Both sexes,Immigrants,All ages,1671
+1999,Alberta,Both sexes,Immigrants,All ages,12865
+1999,British Columbia,Both sexes,Immigrants,All ages,36946
+1999,Yukon,Both sexes,Immigrants,All ages,79
+1999,Nunavut,Both sexes,Immigrants,All ages,12
+2000,Newfoundland and Labrador,Both sexes,Immigrants,All ages,445
+2000,Prince Edward Island,Both sexes,Immigrants,All ages,189
+2000,Nova Scotia,Both sexes,Immigrants,All ages,1747
+2000,New Brunswick,Both sexes,Immigrants,All ages,874
+2000,Quebec,Both sexes,Immigrants,All ages,36716
+2000,Ontario,Both sexes,Immigrants,All ages,149998
+2000,Saskatchewan,Both sexes,Immigrants,All ages,1843
+2000,Alberta,Both sexes,Immigrants,All ages,16202
+2000,British Columbia,Both sexes,Immigrants,All ages,39543
+2000,Yukon,Both sexes,Immigrants,All ages,48
+2000,Nunavut,Both sexes,Immigrants,All ages,11
+2001,Newfoundland and Labrador,Both sexes,Immigrants,All ages,414
+2001,Prince Edward Island,Both sexes,Immigrants,All ages,145
+2001,Nova Scotia,Both sexes,Immigrants,All ages,1609
+2001,New Brunswick,Both sexes,Immigrants,All ages,765
+2001,Quebec,Both sexes,Immigrants,All ages,39114
+2001,Ontario,Both sexes,Immigrants,All ages,152823
+2001,Saskatchewan,Both sexes,Immigrants,All ages,1818
+2001,Alberta,Both sexes,Immigrants,All ages,16689
+2001,British Columbia,Both sexes,Immigrants,All ages,38024
+2001,Yukon,Both sexes,Immigrants,All ages,66
+2001,Nunavut,Both sexes,Immigrants,All ages,19
+2002,Newfoundland and Labrador,Both sexes,Immigrants,All ages,316
+2002,Prince Edward Island,Both sexes,Immigrants,All ages,89
+2002,Nova Scotia,Both sexes,Immigrants,All ages,1257
+2002,New Brunswick,Both sexes,Immigrants,All ages,645
+2002,Quebec,Both sexes,Immigrants,All ages,34913
+2002,Ontario,Both sexes,Immigrants,All ages,109814
+2002,Saskatchewan,Both sexes,Immigrants,All ages,1560
+2002,Alberta,Both sexes,Immigrants,All ages,13630
+2002,British Columbia,Both sexes,Immigrants,All ages,31924
+2002,Yukon,Both sexes,Immigrants,All ages,56
+2002,Nunavut,Both sexes,Immigrants,All ages,5
+2003,Newfoundland and Labrador,Both sexes,Immigrants,All ages,536
+2003,Prince Edward Island,Both sexes,Immigrants,All ages,268
+2003,Nova Scotia,Both sexes,Immigrants,All ages,1707
+2003,New Brunswick,Both sexes,Immigrants,All ages,760
+2003,Quebec,Both sexes,Immigrants,All ages,44555
+2003,Ontario,Both sexes,Immigrants,All ages,127942
+2003,Saskatchewan,Both sexes,Immigrants,All ages,1894
+2003,Alberta,Both sexes,Immigrants,All ages,17116
+2003,British Columbia,Both sexes,Immigrants,All ages,36712
+2003,Yukon,Both sexes,Immigrants,All ages,60
+2003,Nunavut,Both sexes,Immigrants,All ages,11
+2004,Newfoundland and Labrador,Both sexes,Immigrants,All ages,541
+2004,Prince Edward Island,Both sexes,Immigrants,All ages,312
+2004,Nova Scotia,Both sexes,Immigrants,All ages,1708
+2004,New Brunswick,Both sexes,Immigrants,All ages,865
+2004,Quebec,Both sexes,Immigrants,All ages,43418
+2004,Ontario,Both sexes,Immigrants,All ages,129785
+2004,Saskatchewan,Both sexes,Immigrants,All ages,2099
+2004,Alberta,Both sexes,Immigrants,All ages,17441
+2004,British Columbia,Both sexes,Immigrants,All ages,40577
+2004,Yukon,Both sexes,Immigrants,All ages,58
+2004,Nunavut,Both sexes,Immigrants,All ages,9
+2005,Newfoundland and Labrador,Both sexes,Immigrants,All ages,452
+2005,Prince Edward Island,Both sexes,Immigrants,All ages,352
+2005,Nova Scotia,Both sexes,Immigrants,All ages,2197
+2005,New Brunswick,Both sexes,Immigrants,All ages,1386
+2005,Quebec,Both sexes,Immigrants,All ages,42001
+2005,Ontario,Both sexes,Immigrants,All ages,133062
+2005,Saskatchewan,Both sexes,Immigrants,All ages,2108
+2005,Alberta,Both sexes,Immigrants,All ages,19930
+2005,British Columbia,Both sexes,Immigrants,All ages,43846
+2005,Yukon,Both sexes,Immigrants,All ages,77
+2005,Nunavut,Both sexes,Immigrants,All ages,10
+2006,Newfoundland and Labrador,Both sexes,Immigrants,All ages,516
+2006,Prince Edward Island,Both sexes,Immigrants,All ages,738
+2006,Nova Scotia,Both sexes,Immigrants,All ages,2715
+2006,New Brunswick,Both sexes,Immigrants,All ages,1616
+2006,Quebec,Both sexes,Immigrants,All ages,45080
+2006,Ontario,Both sexes,Immigrants,All ages,115445
+2006,Saskatchewan,Both sexes,Immigrants,All ages,3095
+2006,Alberta,Both sexes,Immigrants,All ages,20156
+2006,British Columbia,Both sexes,Immigrants,All ages,37811
+2006,Yukon,Both sexes,Immigrants,All ages,55
+2006,Nunavut,Both sexes,Immigrants,All ages,11
+2007,Newfoundland and Labrador,Both sexes,Immigrants,All ages,635
+2007,Prince Edward Island,Both sexes,Immigrants,All ages,1282
+2007,Nova Scotia,Both sexes,Immigrants,All ages,2668
+2007,New Brunswick,Both sexes,Immigrants,All ages,1797
+2007,Quebec,Both sexes,Immigrants,All ages,45870
+2007,Ontario,Both sexes,Immigrants,All ages,115051
+2007,Saskatchewan,Both sexes,Immigrants,All ages,4291
+2007,Alberta,Both sexes,Immigrants,All ages,23804
+2007,British Columbia,Both sexes,Immigrants,All ages,43220
+2007,Yukon,Both sexes,Immigrants,All ages,97
+2007,Nunavut,Both sexes,Immigrants,All ages,36
+2008,Newfoundland and Labrador,Both sexes,Immigrants,All ages,571
+2008,Prince Edward Island,Both sexes,Immigrants,All ages,1723
+2008,Nova Scotia,Both sexes,Immigrants,All ages,2446
+2008,New Brunswick,Both sexes,Immigrants,All ages,1918
+2008,Quebec,Both sexes,Immigrants,All ages,46508
+2008,Ontario,Both sexes,Immigrants,All ages,105423
+2008,Saskatchewan,Both sexes,Immigrants,All ages,5928
+2008,Alberta,Both sexes,Immigrants,All ages,25159
+2008,British Columbia,Both sexes,Immigrants,All ages,42375
+2008,Yukon,Both sexes,Immigrants,All ages,134
+2008,Nunavut,Both sexes,Immigrants,All ages,32
+2009,Newfoundland and Labrador,Both sexes,Immigrants,All ages,680
+2009,Prince Edward Island,Both sexes,Immigrants,All ages,1792
+2009,Nova Scotia,Both sexes,Immigrants,All ages,2413
+2009,New Brunswick,Both sexes,Immigrants,All ages,1928
+2009,Quebec,Both sexes,Immigrants,All ages,51521
+2009,Ontario,Both sexes,Immigrants,All ages,116572
+2009,Saskatchewan,Both sexes,Immigrants,All ages,7204
+2009,Alberta,Both sexes,Immigrants,All ages,30005
+2009,British Columbia,Both sexes,Immigrants,All ages,43871
+2009,Yukon,Both sexes,Immigrants,All ages,333
+2009,Nunavut,Both sexes,Immigrants,All ages,16
+2010,Newfoundland and Labrador,Both sexes,Immigrants,All ages,699
+2010,Prince Edward Island,Both sexes,Immigrants,All ages,2609
+2010,Nova Scotia,Both sexes,Immigrants,All ages,2287
+2010,New Brunswick,Both sexes,Immigrants,All ages,1986
+2010,Quebec,Both sexes,Immigrants,All ages,53396
+2010,Ontario,Both sexes,Immigrants,All ages,105015
+2010,Saskatchewan,Both sexes,Immigrants,All ages,7552
+2010,Alberta,Both sexes,Immigrants,All ages,30457
+2010,British Columbia,Both sexes,Immigrants,All ages,38946
+2010,Yukon,Both sexes,Immigrants,All ages,214
+2010,Nunavut,Both sexes,Immigrants,All ages,17
+2011,Newfoundland and Labrador,Both sexes,Immigrants,All ages,742
+2011,Prince Edward Island,Both sexes,Immigrants,All ages,1379
+2011,Nova Scotia,Both sexes,Immigrants,All ages,2355
+2011,New Brunswick,Both sexes,Immigrants,All ages,2255
+2011,Quebec,Both sexes,Immigrants,All ages,54253
+2011,Ontario,Both sexes,Immigrants,All ages,101287
+2011,Saskatchewan,Both sexes,Immigrants,All ages,11447
+2011,Alberta,Both sexes,Immigrants,All ages,34566
+2011,British Columbia,Both sexes,Immigrants,All ages,36246
+2011,Yukon,Both sexes,Immigrants,All ages,331
+2011,Nunavut,Both sexes,Immigrants,All ages,26
+2012,Newfoundland and Labrador,Both sexes,Immigrants,All ages,680
+2012,Prince Edward Island,Both sexes,Immigrants,All ages,863
+2012,Nova Scotia,Both sexes,Immigrants,All ages,2243
+2012,New Brunswick,Both sexes,Immigrants,All ages,2019
+2012,Quebec,Both sexes,Immigrants,All ages,55966
+2012,Ontario,Both sexes,Immigrants,All ages,105910
+2012,Saskatchewan,Both sexes,Immigrants,All ages,9816
+2012,Alberta,Both sexes,Immigrants,All ages,36866
+2012,British Columbia,Both sexes,Immigrants,All ages,35736
+2012,Yukon,Both sexes,Immigrants,All ages,212
+2012,Nunavut,Both sexes,Immigrants,All ages,12
+2013,Newfoundland and Labrador,Both sexes,Immigrants,All ages,1024
+2013,Prince Edward Island,Both sexes,Immigrants,All ages,1400
+2013,Nova Scotia,Both sexes,Immigrants,All ages,2779
+2013,New Brunswick,Both sexes,Immigrants,All ages,2298
+2013,Quebec,Both sexes,Immigrants,All ages,51652
+2013,Ontario,Both sexes,Immigrants,All ages,101913
+2013,Saskatchewan,Both sexes,Immigrants,All ages,12315
+2013,Alberta,Both sexes,Immigrants,All ages,41066
+2013,British Columbia,Both sexes,Immigrants,All ages,37471
+2013,Yukon,Both sexes,Immigrants,All ages,360
