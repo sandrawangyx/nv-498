@@ -107,10 +107,11 @@ d3.csv("CSV/canBankRate.csv", function(d) {
 
                 rates.append("text")
                 .datum(function(d) {
-                    return {
+                return {
                         id: d.id,
                         value: d.values[d.values.length - 1]
                     };
+
                 })
                 .attr("transform", function(d) {
                     return "translate(" + x(d.value.date) + "," + y(d.value.rate) + ")";

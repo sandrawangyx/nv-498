@@ -23,7 +23,7 @@ public class CsvModifier {
                 if((line.matches("\"199[0-9].*")
                         || line.matches("\"200[0-9].*")
                         || line.matches("\"201[0-9].*"))
-                        && (line.contains("Bank rate") || line.contains("Chartered bank administered interest rates - prime business"))
+                        && (line.contains("Bank rate") || line.contains("Average residential mortgage lending rate: 5 year"))
                         && !line.contains("Bank rate, last Tuesday"))
                 {
                     try {
