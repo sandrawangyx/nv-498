@@ -1,6 +1,6 @@
 var svg = d3.select("svg"),
     margin = {
-        top: 20,
+        top: 40,
         right: 80,
         bottom: 30,
         left: 50
@@ -10,7 +10,7 @@ var svg = d3.select("svg"),
     g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var parseTime = d3.timeParse("%Y-%m");
-var rateType; 
+var rateType;
 
 var x = d3.scaleTime().range([0, width]),
     y = d3.scaleLinear().range([height, 0]),
@@ -32,13 +32,16 @@ d3.csv("CSV/canBankRate.csv", function(d) {
             return d;
         }, function(error, data) {
             if (error) throw error;
-            rateType = data.map(function(d) {
+            var rt = d3.nest().key(function(d){return d.Rates;}).entries(data);
+            console.log("rt..." + JSON.stringify(rt));
+            rateType = rt.map(function(d) {
                     return {
-                        id: d.Rates,
-                        values: data.map(function(d) {
+                        //id: d.Rates,
+                        id: d.key,
+                        values: d.values.map(function(r) {
                                 return {
-                                    date: parseTime(d.REF_DATE),
-                                    rate: +d.VALUE
+                                    date: parseTime(r.REF_DATE),
+                                    rate: +r.VALUE
                                 };
                             })
 
@@ -47,8 +50,6 @@ d3.csv("CSV/canBankRate.csv", function(d) {
 
                 console.log("rateType map..." + JSON.stringify(rateType));
 
-
-                //x.domain(d3.extent(data, function(d) { console.log("time..." +parseTime(d.REF_DATE) ); return parseTime(d.REF_DATE); }));
                 x.domain(d3.extent(data, function(d) { //console.log("time..." +d.REF_DATE);
                     return parseTime(d.REF_DATE);
                 }));
