@@ -1,7 +1,7 @@
 var svg = d3.select("svg"),
     margin = {
         top: 40,
-        right: 80,
+        right: 250,
         bottom: 30,
         left: 50
     },
@@ -119,6 +119,7 @@ d3.csv("CSV/canBankRate.csv", function(d) {
                 .attr("x", 3)
                 .attr("dy", "0.35em")
                 .style("font", "10px sans-serif")
+                .style("display", "inline-block")
                 .text(function(d) {
                     return d.id;
                 });
