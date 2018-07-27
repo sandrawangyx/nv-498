@@ -1,10 +1,16 @@
 var svg = d3.select("svg"),
-    margin = {top: 20, right: 80, bottom: 30, left: 50},
-    width = svg.attr("width") - margin.left - margin.right,
-    height = svg.attr("height") - margin.top - margin.bottom,
+    margin = {
+        top: 20,
+        right: 80,
+        bottom: 30,
+        left: 50
+    },
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
     g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var parseTime = d3.timeParse("%Y%m%d");
+var parseTime = d3.timeParse("%Y-%m");
+var rateType; 
 
 var x = d3.scaleTime().range([0, width]),
     y = d3.scaleLinear().range([height, 0]),
@@ -12,66 +18,112 @@ var x = d3.scaleTime().range([0, width]),
 
 var line = d3.line()
     .curve(d3.curveBasis)
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.temperature); });
+    .x(function(d) {
+        return x(d.date);
+    })
+    .y(function(d) {
+        return y(d.rate);
+    });
 
-d3.tsv("data.tsv", type, function(error, data) {
-  if (error) throw error;
+d3.csv("CSV/canBankRate.csv", function(d) {
+            //d.REF_DATE = parseTime(d.REF_DATE);
+            //d.VALUE = +d.VALUE;
+            //d.REF_DATE = parseTime(d.REF_DATE);
+            return d;
+        }, function(error, data) {
+            if (error) throw error;
+            rateType = data.map(function(d) {
+                    return {
+                        id: d.Rates,
+                        values: data.map(function(d) {
+                                return {
+                                    date: parseTime(d.REF_DATE),
+                                    rate: +d.VALUE
+                                };
+                            })
 
-  var cities = data.columns.slice(1).map(function(id) {
-    return {
-      id: id,
-      values: data.map(function(d) {
-        return {date: d.date, temperature: d[id]};
-      })
-    };
-  });
+                        };
+                    });
 
-  x.domain(d3.extent(data, function(d) { return d.date; }));
+                console.log("rateType map..." + JSON.stringify(rateType));
 
-  y.domain([
-    d3.min(cities, function(c) { return d3.min(c.values, function(d) { return d.temperature; }); }),
-    d3.max(cities, function(c) { return d3.max(c.values, function(d) { return d.temperature; }); })
-  ]);
 
-  z.domain(cities.map(function(c) { return c.id; }));
+                //x.domain(d3.extent(data, function(d) { console.log("time..." +parseTime(d.REF_DATE) ); return parseTime(d.REF_DATE); }));
+                x.domain(d3.extent(data, function(d) { //console.log("time..." +d.REF_DATE);
+                    return parseTime(d.REF_DATE);
+                }));
 
-  g.append("g")
-      .attr("class", "axis axis--x")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
+                y.domain([
+                    d3.min(rateType, function(r) {
+                        return d3.min(r.values, function(d) {
+                            return d.rate;
+                        });
+                    }),
+                    d3.max(rateType, function(r) {
+                        return d3.max(r.values, function(d) {
+                            return d.rate;
+                        });
+                    })
+                ]);
 
-  g.append("g")
-      .attr("class", "axis axis--y")
-      .call(d3.axisLeft(y))
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", "0.71em")
-      .attr("fill", "#000")
-      .text("Temperature, ºF");
+                z.domain(rateType.map(function(r){return r.id}));
 
-  var city = g.selectAll(".city")
-    .data(cities)
-    .enter().append("g")
-      .attr("class", "city");
+                g.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x))
+                .append("text")
+                .attr("class", "x label")
+                    .attr("text-anchor", "end")
+                    .attr("x", width)
+                    .attr("y", height - 6)
+                .attr("fill", "#000")
+                .text("year-month");
 
-  city.append("path")
-      .attr("class", "line")
-      .attr("d", function(d) { return line(d.values); })
-      .style("stroke", function(d) { return z(d.id); });
+                g.append("g")
+                .attr("class", "axis axis--y")
+                .call(d3.axisLeft(y))
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "0.71em")
+                .attr("fill", "#000")
+                .text("Rates, %");
 
-  city.append("text")
-      .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
-      .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
-      .attr("x", 3)
-      .attr("dy", "0.35em")
-      .style("font", "10px sans-serif")
-      .text(function(d) { return d.id; });
-});
+                var rates = g.selectAll(".rates")
+                    .data(rateType)
+                    .enter().append("g")
+                    .attr("class", "rates");
 
-function type(d, _, columns) {
-  d.date = parseTime(d.date);
-  for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
-  return d;
-}
+                rates.append("path")
+                .attr("class", "line")
+                .attr("d", function(d) {
+                console.log("d.values....." + JSON.stringify(d.values));
+                    return line(d.values); })
+                .style("stroke", function(d) {
+                    return z(d.id);
+                });
+
+                rates.append("text")
+                .datum(function(d) {
+                    return {
+                        id: d.id,
+                        value: d.values[d.values.length - 1]
+                    };
+                })
+                .attr("transform", function(d) {
+                    return "translate(" + x(d.value.date) + "," + y(d.value.rate) + ")";
+                })
+                .attr("x", 3)
+                .attr("dy", "0.35em")
+                .style("font", "10px sans-serif")
+                .text(function(d) {
+                    return d.id;
+                });
+            });
+
+        function type(d, _, columns) {
+            d.date = parseTime(d.date);
+            for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
+            return d;
+        }

@@ -1,4 +1,4 @@
-﻿"REF_DATE","GEO","DGUID","Mortgages","Increases and decreases","Type of mortgage","UOM","UOM_ID","SCALAR_FACTOR","SCALAR_ID","VECTOR","COORDINATE","VALUE","STATUS","SYMBOL","TERMINATED","DECIMALS"
+﻿"date","GEO","DGUID","Mortgages","Increases and decreases","TypeOfMortgage","UOM","UOM_ID","SCALAR_FACTOR","SCALAR_ID","VECTOR","COORDINATE","VALUE","STATUS","SYMBOL","TERMINATED","DECIMALS"
 "1982-01","Canada","2016A000011124","Total, mortgage loans outstanding","Total, increases and decreases","Total, mortgages","Dollars","81","millions","6","v36421","1.1.1.1","31715","","","","0"
 "1982-01","Canada","2016A000011124","Mortgages in Canada outstanding","Total, increases and decreases","Total, mortgages","Dollars","81","millions","6","v36463","1.2.1.1","31137","","","","0"
 "1982-01","Canada","2016A000011124","Mortgages in Canada outstanding","Total, increases and decreases","Residential mortgages, insured","Dollars","81","millions","6","v36478","1.2.1.3","17423","","","","0"

@@ -64,7 +64,7 @@ public class Main {
 //  @Bean
 //    public File modifyCSV() throws IOException {
 //      CsvModifier csvModifier = new CsvModifier();
-//      return csvModifier.createNewCsv("src/main/resources/templates/CSV/sex_ageGroup.csv", "src/main/resources/templates/CSV/sexageGroup_province.csv");
+//      return csvModifier.createNewCsv("src/main/resources/templates/CSV/canBankRate_full.csv", "src/main/resources/templates/CSV/canBankRate.csv");
 //
 //  }
 
