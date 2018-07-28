@@ -61,12 +61,12 @@ public class Main {
 //    return "ageGroup";
 //  }
 //
-  @Bean
-    public File modifyCSV() throws IOException {
-      CsvModifier csvModifier = new CsvModifier();
-      return csvModifier.createNewCsv("src/main/resources/CSV/MortgageCanada.csv", "src/main/resources/CSV/MortgageCanada_part.csv");
-
-  }
+//  @Bean
+//    public File modifyCSV() throws IOException {
+//      CsvModifier csvModifier = new CsvModifier();
+//      return csvModifier.createNewCsv("src/main/resources/CSV/MortgageCanada.csv", "src/main/resources/CSV/MortgageCanada_part.csv");
+//
+//  }
 
 
 }

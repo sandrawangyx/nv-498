@@ -16,14 +16,7 @@ var rateType;
 var x = d3.scaleTime().range([0, width]),
     y = d3.scaleLinear().range([height, 0]),
     z = d3.scaleOrdinal(d3.schemeCategory10);
-//var stack = d3.stack();
-//var area = d3.area()
-//.x(function(d) {
-//        return x(d.date);
-//    })
-//    .y(function(d) {
-//        return y(d.amount);
-//    });
+
 
 var line = d3.line()
     .curve(d3.curveBasisOpen)
@@ -69,7 +62,7 @@ d3.csv("../CSV/MortgageCanada_part.csv", function(d) {
                     }),
                     d3.max(mortgageType, function(r) {
                         return d3.max(r.values, function(d) {
-                            return d.amount -20;
+                            return d.amount - 5000;
                         });
                     })
                 ]);
@@ -115,8 +108,11 @@ d3.csv("../CSV/MortgageCanada_part.csv", function(d) {
                     return z(d.id);
                 });
 
+
                 mortgages.append("text")
                 .datum(function(d) {
+                console.log("datum...." + JSON.stringify(d));
+
                 return {
                         id: d.id,
                         value: d.values[d.values.length - 1]
@@ -124,11 +120,19 @@ d3.csv("../CSV/MortgageCanada_part.csv", function(d) {
 
                 })
                 .attr("transform", function(d) {
+                if(d.id.includes("Total"))
+                {
+                       var yvalue =  y(d.value.amount) -25;
+                    return "translate(" + x(d.value.date) + "," + yvalue + ")";
+                }
+                else
+                {
                     return "translate(" + x(d.value.date) + "," + y(d.value.amount) + ")";
+                    }
                 })
                 .attr("x", 3)
-                .attr("dy", "0.35em")
-                .style("font", "10px sans-serif")
+                .attr("dy", "-1.5em")
+                .style("font", "12px sans-serif")
                 .style("display", "inline-block")
                 .text(function(d) {
                     return d.id;
