@@ -13,7 +13,7 @@ var title = g.append("text")
      .attr("class", "title")
      .attr("dy", ".71em");
 
-d3.csv("CSV/sexageGroup_bothsexes.csv", function(d) {
+d3.csv("../CSV/sexageGroup_bothsexes.csv", function(d) {
 
   d.value = +d.value;
   d.AgeGroup = d.AgeGroup.substring(0, d.AgeGroup.length - 6);
