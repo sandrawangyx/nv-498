@@ -19,8 +19,12 @@ package com.example;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.io.File;
+import java.io.IOException;
 
 @Controller
 @SpringBootApplication
@@ -57,12 +61,12 @@ public class Main {
 //    return "ageGroup";
 //  }
 //
-//  @Bean
-//    public File modifyCSV() throws IOException {
-//      CsvModifier csvModifier = new CsvModifier();
-//      return csvModifier.createNewCsv("src/main/resources/templates/CSV/canBankRate_full.csv", "src/main/resources/templates/CSV/canBankRate.csv");
-//
-//  }
+  @Bean
+    public File modifyCSV() throws IOException {
+      CsvModifier csvModifier = new CsvModifier();
+      return csvModifier.createNewCsv("src/main/resources/CSV/MortgageCanada.csv", "src/main/resources/CSV/MortgageCanada_part.csv");
+
+  }
 
 
 }

@@ -1,10 +1,10 @@
-function chart1(){
-var svg = d3.select("#svg1"),
+function chart2(){
+var svg = d3.select("#svg2"),
     margin = {
         top: 40,
         right: 250,
         bottom: 30,
-        left: 50
+        left: 100
     },
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom,
@@ -16,55 +16,68 @@ var rateType;
 var x = d3.scaleTime().range([0, width]),
     y = d3.scaleLinear().range([height, 0]),
     z = d3.scaleOrdinal(d3.schemeCategory10);
+//var stack = d3.stack();
+//var area = d3.area()
+//.x(function(d) {
+//        return x(d.date);
+//    })
+//    .y(function(d) {
+//        return y(d.amount);
+//    });
 
 var line = d3.line()
-    .curve(d3.curveBasis)
+    .curve(d3.curveBasisOpen)
+   // .interpolate("basis")
     .x(function(d) {
         return x(d.date);
     })
     .y(function(d) {
-        return y(d.rate);
+        return y(d.amount);
     });
 
-d3.csv("../CSV/canBankRate.csv", function(d) {
+d3.csv("../CSV/MortgageCanada_part.csv", function(d) {
+            //d.VALUE = +d.VALUE;
             return d;
         }, function(error, data) {
             if (error) throw error;
-            var rt = d3.nest().key(function(d){return d.Rates;}).entries(data);
-            //console.log("rt..." + JSON.stringify(rt));
-            rateType = rt.map(function(d) {
+            var mt = d3.nest().key(function(d){return d.TypeOfMortgage;}).entries(data);
+            console.log("mt..." + JSON.stringify(mt));
+            mortgageType = mt.map(function(d) {
                     return {
                         id: d.key,
                         values: d.values.map(function(r) {
                                 return {
                                     date: parseTime(r.REF_DATE),
-                                    rate: +r.VALUE
+                                    amount: +r.VALUE
                                 };
                             })
 
                         };
                     });
 
-                //console.log("rateType map..." + JSON.stringify(rateType));
+                //console.log("mortgageType map..." + JSON.stringify(mortgageType));
 
                 x.domain(d3.extent(data, function(d) {
                     return parseTime(d.REF_DATE);
                 }));
 
                 y.domain([
-                    d3.min(rateType, function(r) {
+                    d3.min(mortgageType, function(r) {
                         return d3.min(r.values, function(d) {
-                            return d.rate;
+                            return d.amount;
                         });
                     }),
-                    d3.max(rateType, function(r) {
+                    d3.max(mortgageType, function(r) {
                         return d3.max(r.values, function(d) {
-                            return d.rate;
+                            return d.amount -20;
                         });
                     })
                 ]);
 
-                z.domain(rateType.map(function(r){return r.id}));
+                z.domain(mortgageType.map(function(r){return r.id}));
+
+//stack.keys(mortgageType.map(function(r){return r.id}));
+
 
                 g.append("g")
                 .attr("class", "axis axis--x")
@@ -86,14 +99,14 @@ d3.csv("../CSV/canBankRate.csv", function(d) {
                 .attr("y", 6)
                 .attr("dy", "0.71em")
                 .attr("fill", "#000")
-                .text("Rates, %");
+                .text("Mortgage Amount in Million, $M");
 
-                var rates = g.selectAll(".rates")
-                    .data(rateType)
+                var mortgages = g.selectAll(".mortgages")
+                    .data(mortgageType)
                     .enter().append("g")
-                    .attr("class", "rates");
+                    .attr("class", "mortgages");
 
-                rates.append("path")
+                mortgages.append("path")
                 .attr("class", "line")
                 .attr("d", function(d) {
                 //console.log("d.values....." + JSON.stringify(d.values));
@@ -102,7 +115,7 @@ d3.csv("../CSV/canBankRate.csv", function(d) {
                     return z(d.id);
                 });
 
-                rates.append("text")
+                mortgages.append("text")
                 .datum(function(d) {
                 return {
                         id: d.id,
@@ -111,7 +124,7 @@ d3.csv("../CSV/canBankRate.csv", function(d) {
 
                 })
                 .attr("transform", function(d) {
-                    return "translate(" + x(d.value.date) + "," + y(d.value.rate) + ")";
+                    return "translate(" + x(d.value.date) + "," + y(d.value.amount) + ")";
                 })
                 .attr("x", 3)
                 .attr("dy", "0.35em")
@@ -129,4 +142,4 @@ d3.csv("../CSV/canBankRate.csv", function(d) {
         }
 
         }
-        chart1();
+        chart2();
