@@ -4,7 +4,7 @@ var svg = d3.select("#svg2"),
         top: 40,
         right: 250,
         bottom: 30,
-        left: 100
+        left: 50
     },
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom,
@@ -28,13 +28,13 @@ var line = d3.line()
         return y(d.amount);
     });
 
-d3.csv("../CSV/MortgageCanada_part.csv", function(d) {
+d3.csv("CSV/MortgageCanada_part.csv", function(d) {
             //d.VALUE = +d.VALUE;
             return d;
         }, function(error, data) {
             if (error) throw error;
             var mt = d3.nest().key(function(d){return d.TypeOfMortgage;}).entries(data);
-            console.log("mt..." + JSON.stringify(mt));
+            //console.log("mt..." + JSON.stringify(mt));
             mortgageType = mt.map(function(d) {
                     return {
                         id: d.key,
@@ -111,7 +111,7 @@ d3.csv("../CSV/MortgageCanada_part.csv", function(d) {
 
                 mortgages.append("text")
                 .datum(function(d) {
-                console.log("datum...." + JSON.stringify(d));
+                //console.log("datum...." + JSON.stringify(d));
 
                 return {
                         id: d.id,

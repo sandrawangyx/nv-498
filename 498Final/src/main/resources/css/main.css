@@ -54,9 +54,7 @@ svg {
   text-anchor: middle;
 }
 
-.birthyear {
-  fill: #fff;
-}
+
 
 rect {
   fill-opacity: .6;

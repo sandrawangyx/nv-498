@@ -26,7 +26,7 @@ var line = d3.line()
         return y(d.rate);
     });
 
-d3.csv("../CSV/canBankRate.csv", function(d) {
+d3.csv("CSV/canBankRate.csv", function(d) {
             return d;
         }, function(error, data) {
             if (error) throw error;

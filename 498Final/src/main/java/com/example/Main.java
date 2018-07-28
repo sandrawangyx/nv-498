@@ -50,10 +50,10 @@ public class Main {
   String provinceBar() {
     return "/provinceBar.html";
   }
-  @RequestMapping(value="/provinceMap")
-  String provinceMap() {
-    return "/fragments/provinceMap.html";
-  }
+//  @RequestMapping(value="/provinceMap")
+//  String provinceMap() {
+//    return "/fragments/provinceMap.html";
+//  }
 
 //  @RequestMapping("/ageGroup")
 //  String ageGroup()
