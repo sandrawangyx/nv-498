@@ -1,12 +1,17 @@
-var svg = d3.select("#svg3"),
+function ageB()
+{
+var svg = d3.select("#ageGroupBar"),
     margin = {top: 20, right: 20, bottom: 50, left: 70},
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom;
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 var x = d3.scaleBand().rangeRound([0, width]).padding(0.2),
     y = d3.scaleLinear().rangeRound([height, 0]);
 
-var g = svg.append("g")
+var g = svg.append("svg")
+.attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var title = g.append("text")
@@ -38,6 +43,7 @@ var populationByYear = d3.nest()
 
   g.append("text")
    .attr("transform","translate(" + (width/2) + " ," + (height + margin.top + 10) + ")")
+   .attr("font-size", "12")
             .style("text-anchor", "middle")
             .text("Age Group");
 
@@ -51,6 +57,7 @@ var populationByYear = d3.nest()
       .attr("y", 10 - margin.left)
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
+      .attr("font-size", "12")
       .style("text-anchor", "middle").text("Population");
 //----slide
 var barnumber = 20;
@@ -87,9 +94,9 @@ title.text(viewYearData);
           page--;
           viewYearData = populationByYear[page-1].key;
          viewdata = populationByYear[page-1].values;
-          redraw(viewdata);
+          updateView(viewdata);
           title.text(viewYearData);
-          //console.log("view data....." + JSON.stringify(viewdata));
+          console.log("view data....." + JSON.stringify(viewdata));
 
       });
 
@@ -113,3 +120,5 @@ title.text(viewYearData);
 
 });
 
+}
+ageB();

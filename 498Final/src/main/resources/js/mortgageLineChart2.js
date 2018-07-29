@@ -1,14 +1,17 @@
 function chart2(){
-var svg = d3.select("#svg2"),
+var svg = d3.select("#chart2"),
     margin = {
         top: 40,
         right: 250,
         bottom: 30,
         left: 50
     },
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+   width = 960 - margin.left - margin.right,
+               height = 500 - margin.top - margin.bottom;
+       var g = svg.append("svg")
+                   .attr("width", width + margin.left + margin.right)
+                   .attr("height", height + margin.top + margin.bottom)
+                   .append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var parseTime = d3.timeParse("%Y-%m");
 var rateType;

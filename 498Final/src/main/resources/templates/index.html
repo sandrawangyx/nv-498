@@ -14,42 +14,67 @@
          list-style-type: none;
          margin: 0;
          padding: 0;
-         width: 25%;
+         width: 15%;
          background-color: #808080;
          position: fixed;
          height: 100%;
          overflow: auto;
          }
-         li a {
+         li button {
+         background-color: inherit;
+          float: left;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 14px 16px;
+          transition: 0.3s;
+          font-size: 17px;
          display: block;
          color: #D3D3D3;
-         padding: 8px 16px;
          text-decoration: none;
          }
-         li a.active {
+
+         li button.active {
          background-color: #D8BFD8;
          color: white;
          }
-         li a:hover:not(.active) {
+         li button:hover:not(.active) {
          background-color: #555;
          color: white;
          }
       </style>
     <script>
 
-         function showDiv(divID)
+         function showDiv(evt,divID)
          {
-           content = document.getElementsByClassName("content");
+           var content = document.getElementsByClassName("content");
             for (i = 0; i < content.length; i++) {
              content[i].style.display = "none";
              }
+           var  menulinks = document.getElementsByClassName("menulinks");
 
+         for (i = 0; i < menulinks.length; i++) {
+             menulinks[i].className = menulinks[i].className.replace(" active", "");
+         }
            document.getElementById(divID).style.display = "block";
            if(divID === "provinceBar")
              {
               document.getElementById("Total_button").click();
              }
+            else if(divID === "mortgageLine")
+             {
+             updateSVG();
+             chart1();
+             chart2();
+             }
+             else
+             {
+             updateSVG();
+             ageB();
+             }
+             evt.currentTarget.className += " active";
          }
+
 
          function openCat(evt, catName) {
          var i, tabcontent, tablinks, displayName;
@@ -72,9 +97,7 @@
 
          updateSVG();
          provB(catName, displayName);
-
          }
-
 
 
       </script>
@@ -83,20 +106,23 @@
 <body>
 <h2>Canada Population including International Immigration impact on national mortgages line</h2>
 <p>
-    How does the international immigrants since year 1995 to Canada have impact on the national mortgage line?
+    How does the international immigrants since year 1990 to Canada have impact on the national mortgage line?
 </p>
-<ul>
-    <li><a id="mortgage" class="active" onclick="showDiv('mortgageLine')">Mortgage line in Canada</a></li>
-    <li><a id="province" onclick="showDiv('provinceBar')">Population by Province</a></li>
-    <li><a id="ageGroup" onclick="showDiv('ageGroupBar')">Population by age group</a></li>
+<ul class="menu" id="menuContainer">
+    <li><button id="mortgage" class="menulinks active" onclick="showDiv(event,'mortgageLine')">Mortgage line in Canada</button></li>
+    <li><button id="province" class="menulinks" onclick="showDiv(event, 'provinceBar')">Population by Province</button></li>
+    <li><button id="ageGroup" class="menulinks" onclick="showDiv(event, 'ageGroupBar')">Population by age group</button></li>
 </ul>
-<div style="margin-left:25%;padding:1px 16px;height:1000px;border: 2px solid black;
+<div style="margin-left:15%;padding:1px 16px;height:1200px;border: 2px solid black;
          border-radius: 5px;">
     <div id="mortgageLine" class="content">
-        <p>mortgage rate</p>
-        <svg id="svg1" width="960" height="500"> </svg>
+        <p>Mortgage rates</p>
+        <div id="chart1">
+        </div>
+        <p> Mortgage approved amount in Canada</p>
+        <div id="chart2">
+        </div>
         <script src="js/mortgageLineChart.js"></script>
-        <svg id="svg2" width="960" height="500"></svg>
         <script src="js/mortgageLineChart2.js"></script>
     </div>
     <div id="provinceBar" class="content" style="display:none">
@@ -138,15 +164,16 @@
         <div id="bar-container" class="tabcontent" data-profile="CSV/canPopulationByProvince.csv" >
         </div>
     </div>
-        <div id="ageGroupBar" class="content" style="display:none" >
-            <svg width="960" height="500" id="svg3"></svg>
+
+    <div id="ageGroupBar" class="content" style="display:none" >
+            <!--<svg width="960" height="500" id="svg3"></svg>-->
             <script type="text/javascript" src="js/ageGroupBar.js" ></script>
             <div class="slides">
                 <button id="last">Prev Year</button>
                 <button id="next">Next Year</button>
             </div>
         </div>
-    </div>
+
 </div>
 </body>
 </html>

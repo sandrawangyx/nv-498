@@ -1,10 +1,11 @@
 function updateSVG()
 {
-d3.select("svg").remove();
+d3.selectAll("svg").remove();
 }
 
 
 function provB(columnName) {
+d3.selectAll("svg").remove();
 console.log("passing in  column name...." + columnName);;
     var svg = d3.select("#bar-container"),
         margin = {

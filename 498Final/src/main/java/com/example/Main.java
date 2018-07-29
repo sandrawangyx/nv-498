@@ -38,18 +38,18 @@ public class Main {
   String dashboard() {
     return "/index.html";
   }
-  @RequestMapping(value="/ageGroup")
-  String ageGroup() {
-    return "/ageGroup.html";
-  }
-  @RequestMapping(value="/mortgage")
-  String mortgage() {
-    return "/mortgage.html";
-  }
-  @RequestMapping(value="/provinceBar")
-  String provinceBar() {
-    return "/provinceBar.html";
-  }
+//  @RequestMapping(value="/ageGroup")
+//  String ageGroup() {
+//    return "/ageGroup.html";
+//  }
+//  @RequestMapping(value="/mortgage")
+//  String mortgage() {
+//    return "/mortgage.html";
+//  }
+//  @RequestMapping(value="/provinceBar")
+//  String provinceBar() {
+//    return "/provinceBar.html";
+//  }
 //  @RequestMapping(value="/provinceMap")
 //  String provinceMap() {
 //    return "/fragments/provinceMap.html";
