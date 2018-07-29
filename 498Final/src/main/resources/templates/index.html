@@ -102,20 +102,24 @@
 
       </script>
 </head>
-<p>Narrative Visualization</p>
 <body>
-<h2>Canada Population including International Immigration impact on national mortgages line</h2>
-<p>
-    How does the international immigrants since year 1990 to Canada have impact on the national mortgage line?
+<h2 style="padding-left:10px;">Canada population including International Immigration impacts on national mortgages line</h2>
+<p style="padding-left:20px;">
+      How does the Canadian population, especially the international immigrants factor since year 1990 impact on the national mortgage line?
 </p>
 <ul class="menu" id="menuContainer">
-    <li><button id="mortgage" class="menulinks active" onclick="showDiv(event,'mortgageLine')">Mortgage line in Canada</button></li>
+    <li><button id="opening" class="menulinks active" onclick="showDiv(event, 'essay')">About the Visualization</button></li>
+    <li><button id="mortgage" class="menulinks" onclick="showDiv(event,'mortgageLine')">Mortgage line in Canada</button></li>
     <li><button id="province" class="menulinks" onclick="showDiv(event, 'provinceBar')">Population by Province</button></li>
     <li><button id="ageGroup" class="menulinks" onclick="showDiv(event, 'ageGroupBar')">Population by age group</button></li>
 </ul>
 <div style="margin-left:15%;padding:1px 16px;height:1200px;border: 2px solid black;
          border-radius: 5px;">
-    <div id="mortgageLine" class="content">
+    <div id="essay" class="content">
+     <p>essay goes here......</p>
+    </div>
+
+    <div id="mortgageLine" class="content" style="display:none">
         <p>Mortgage rates</p>
         <div id="chart1">
         </div>
