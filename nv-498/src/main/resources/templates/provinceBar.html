@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail of Each Province</title>
+    <style>
+
+    </style>
+    <!--<script type="text/javascript" src="http://d3js.org/d3.v4.min.js"></script>-->
+    <script type="text/javascript" src="js/d3v4.js"></script>
+    <script  type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<script type="text/javascript" src="js/provinceBar.js"></script>
+<div class="tab" id="tabContainer">
+    <button id="Total_button" class="tablinks" onclick="openCat(event, 'Total')"  >Total</button>
+    <button id="NonImmigrants_button" class="tablinks" onclick="openCat(event, 'NonImmigrants')">Non-Immigrants</button>
+    <button id="Immigrants_button" class="tablinks" onclick="openCat(event, 'Immigrants')">Immigrants</button>
+    <button id="Before2001_button" class="tablinks" onclick="openCat(event, 'Before2001')">Before 2001</button>
+    <button id="y2001to2005_button" class="tablinks" onclick="openCat(event, 'y2001to2005')">year 2001 to 2005</button>
+    <button id="y2006to2010_button" class="tablinks" onclick="openCat(event, 'y2006to2010')">year 2006 to 2010</button>
+    <button id="y2011to2016_button" class="tablinks" onclick="openCat(event, 'y2011to2016')">year 2011 to 2016</button>
+    <button id="NonPermanentResidents_button" class="tablinks" onclick="openCat(event, 'NonPermanentResidents')">Non Permanent Residents</button>
+</div>
+<div id="Total" class="tabcontent">
+    <h3>Total Population in each Province</h3>
+</div>
+
+<div id="NonImmigrants" class="tabcontent">
+    <h3>Non Immigrants in each Province</h3>
+</div>
+<div id="Immigrants" class="tabcontent">
+    <h3>Immigrants in each Province</h3>
+</div>
+<div id="Before2001" class="tabcontent">
+    <h3>Total Population in each Province</h3>
+</div>
+<div id="y2001to2005" class="tabcontent">
+    <h3>Total Population from year 2001 to 2005 in each Province</h3>
+</div>
+<div id="y2006to2010" class="tabcontent">
+    <h3>Total Population from year 2006 to 2010 in each Province</h3>
+</div>
+<div id="y2011to2016" class="tabcontent">
+    <h3>Total Population from year 2011 to 2016 in each Province</h3>
+</div>
+<div id="NonPermanentResidents" class="tabcontent">
+    <h3>Non PR Population in each Province</h3>
+ </div>
+
+<div id="bar-container" class="tabcontent" data-profile="CSV/canPopulationByProvince.csv" >
+</div>
+<script>
+    function openCat(evt, catName) {
+    var i, tabcontent, tablinks, displayName;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+document.getElementById("bar-container").style.display= "none";
+tablinks = document.getElementsByClassName("tablinks");
+
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(catName).style.display = "block";
+    evt.currentTarget.className += " active";
+
+
+    displayName = document.getElementById(catName).innerText;
+console.log("dislay name ..... " + displayName);
+
+updateSVG();
+provB(catName, displayName);
+
+
+}
+document.getElementById("Total_button").click();
+
+</script>
+
+</body>
+</html>

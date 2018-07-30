@@ -1,0 +1,164 @@
+.jumbotron {
+     background: #532F8C;
+     color: white;
+     padding-bottom: 80px;
+}
+ .jumbotron .btn-primary {
+     background: #845ac7;
+     border-color: #845ac7;
+}
+ .jumbotron .btn-primary:hover {
+     background: #7646c1;
+}
+ .jumbotron p {
+     color: #d9ccee;
+     max-width: 75%;
+     margin: 1em auto 2em;
+}
+ .navbar + .jumbotron {
+     margin-top: -20px;
+}
+ .jumbotron .lang-logo {
+     display: block;
+     background: #B01302;
+     border-radius: 50%;
+     overflow: hidden;
+     width: 100px;
+     height: 100px;
+     margin: auto;
+     border: 2px solid white;
+}
+ .jumbotron .lang-logo img {
+     max-width: 100%;
+}
+ svg {
+     font: 10px sans-serif;
+}
+ .y.axis path {
+     display: none;
+}
+ .y.axis line {
+     stroke: #fff;
+     stroke-opacity: .2;
+     shape-rendering: crispEdges;
+}
+ .y.axis .zero line {
+     stroke: #000;
+     stroke-opacity: 1;
+}
+ .title {
+     font: 300 78px Helvetica Neue;
+     fill: #666;
+}
+ rect {
+     fill-opacity: .6;
+     fill: #e377c2;
+}
+ rect:first-child {
+     fill: #1f77b4;
+}
+ #map {
+     display: block;
+     position: absolute;
+     background: #fff;
+     width: 100%;
+     height: 100%;
+     margin: 0;
+}
+ path.province {
+     fill: steelblue;
+     stroke: white;
+}
+ path.province:hover {
+     fill: orange;
+}
+ body {
+     font-family: "Arial", sans-serif;
+}
+ .bar {
+     fill: Orange;
+}
+ .axis {
+     font-size: 13px;
+}
+/* .axis path, .axis line {
+     fill: none;
+     display: none;
+}*/
+ .label {
+     font-size: 13px;
+}
+/* Style the tab */
+ .tab {
+     overflow: hidden;
+     border: 1px solid #ccc;
+     background-color: #f1f1f1;
+}
+/* Style the buttons inside the tab */
+ .tab button {
+     background-color: inherit;
+     float: left;
+     border: none;
+     outline: none;
+     cursor: pointer;
+     padding: 14px 16px;
+     transition: 0.3s;
+     font-size: 17px;
+}
+/* Change background color of buttons on hover */
+ .tab button:hover {
+     background-color: #ddd;
+}
+/* Create an active/current tablink class */
+ .tab button.active {
+     background-color: #ccc;
+}
+/* Style the tab content */
+ .tabcontent {
+     display: none;
+     padding: 6px 12px;
+     border: 1px solid #ccc;
+     border-top: none;
+     animation: fadeEffect 1s;
+}
+ @keyframes fadeEffect {
+     from {
+        opacity: 0;
+    }
+     to {
+        opacity: 1;
+    }
+}
+ #bar-container {
+     display: none;
+}
+ .axis--x path {
+     display: none;
+}
+ .line {
+     fill: none;
+     stroke: steelblue;
+     stroke-width: 1.5px;
+}
+.tick
+{
+font-size:10px;
+}
+#last, #next
+{
+background-color: #d1d1e0;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+#last:hover, #next:hover
+{
+background-color:#C0C0C0;
+}
